@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Dashboard - Remotify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <span class="text-xl font-bold text-slate-900 tracking-tight">Remotify</span>
+                    </a>
+                    <div class="hidden md:flex ml-10 space-x-8">
+                        <a href="index.html" class="text-slate-500 hover:text-blue-600 transition">Home</a>
+                        <a href="dashboard.html" class="text-blue-600 font-medium">Find Jobs</a>
+                        <a href="contact.html" class="text-slate-500 hover:text-blue-600 transition">Support</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-4 text-sm text-slate-600 hidden md:inline" id="user-greeting">Welcome, User</span>
+                    <button onclick="logout()" class="text-slate-500 hover:text-red-500">
+                        <i class="fa-solid fa-right-from-bracket text-xl"></i>
+                    </button>
+                    <div class="md:hidden ml-4">
+                        <button onclick="toggleMenu()" class="text-slate-500">
+                            <i class="fa-solid fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="dashboard.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50">Jobs</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600">Support</a>
+                <button onclick="logout()" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-500">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Push Notification Area -->
+    <div id="notification-area" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 hidden">
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline" id="notification-message">Your message here.</span>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[calc(100vh-200px)]">
+
+        <!-- State 1: PAYMENT FORM (Active if status = new) -->
+        <div id="payment-section" class="hidden">
+             <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-blue-600 px-8 py-6">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-2xl font-bold text-white">Complete Activation</h2>
+                        <i class="fa-solid fa-lock text-blue-200 text-2xl"></i>
+                    </div>
+                    <p class="text-blue-100 mt-2">Secure payment required to verify identity and access premium listings.</p>
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-center mb-8 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                        <div>
+                            <p class="text-sm text-slate-500 uppercase font-semibold">Total Amount</p>
+                            <p class="text-3xl font-bold text-slate-900" id="pay-amount">$50.00</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm text-slate-500 uppercase font-semibold">Status</p>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                Unpaid
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium text-slate-900 mb-2">Bank Transfer Details</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 border rounded-lg hover:border-blue-400 transition cursor-default">
+                                    <p class="text-xs text-slate-500">Bank Name</p>
+                                    <p class="font-semibold" id="pay-bank">Global Remote Bank</p>
+                                </div>
+                                <div class="p-4 border rounded-lg hover:border-blue-400 transition cursor-default">
+                                    <p class="text-xs text-slate-500">Account Number</p>
+                                    <p class="font-semibold" id="pay-acc">1234-5678-9000</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form onsubmit="submitPayment(event)" class="border-t border-slate-100 pt-6">
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Confirm Payment</label>
+                            <p class="text-sm text-slate-500 mb-4">Please transfer the amount and enter your Transaction ID below for admin verification.</p>
+                            <div class="flex gap-4">
+                                <input type="text" id="txn-input" required placeholder="Enter Transaction ID (e.g., TXN12345678)" class="flex-1 block w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition shadow-md whitespace-nowrap">
+                                    I've made the payment
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+             </div>
+        </div>
+
+        <!-- State 2: PENDING REVIEW (Active if status = pending) -->
+        <div id="pending-section" class="hidden">
+             <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-12 text-center">
+                 <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                     <i class="fa-solid fa-clock text-yellow-600 text-4xl"></i>
+                 </div>
+                 <h2 class="text-3xl font-bold text-slate-900 mb-4">Verification in Progress</h2>
+                 <p class="text-lg text-slate-600 mb-8">
+                     Thank you for submitting your payment. Our admin team is currently reviewing your transaction ID <span id="pending-txn" class="font-mono font-bold bg-slate-100 px-2 py-1 rounded"></span>.
+                 </p>
+                 <div class="bg-blue-50 text-blue-800 p-4 rounded-lg inline-block">
+                     <i class="fa-solid fa-info-circle mr-2"></i> You will be notified here once approved.
+                 </div>
+             </div>
+        </div>
+
+        <!-- State 3: ACTIVE DASHBOARD (Active if status = active) -->
+        <div id="dashboard-content" class="flex flex-col md:flex-row gap-8 hidden">
+            
+            <!-- Sidebar / Filters -->
+            <div class="w-full md:w-64 shrink-0">
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <h3 class="font-bold text-slate-900 mb-4">Filters</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs font-semibold text-slate-500 uppercase">Job Type</label>
+                            <div class="mt-2 space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-600 focus:ring-blue-500" checked>
+                                    <span class="ml-2 text-sm text-slate-600">Full-time</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-600 focus:ring-blue-500">
+                                    <span class="ml-2 text-sm text-slate-600">Part-time</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-blue-600 focus:ring-blue-500">
+                                    <span class="ml-2 text-sm text-slate-600">Contract</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <label class="text-xs font-semibold text-slate-500 uppercase">Category</label>
+                            <select class="mt-2 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2 border">
+                                <option>All Categories</option>
+                                <option>Development</option>
+                                <option>Design</option>
+                                <option>Marketing</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verified Badge -->
+                <div class="mt-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl shadow-lg p-6 text-white">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="bg-white/20 p-2 rounded-lg">
+                            <i class="fa-solid fa-shield-check text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg">Account Verified</h4>
+                    </div>
+                    <p class="text-green-50 text-sm">You have full access to apply for all verified listings.</p>
+                </div>
+            </div>
+
+            <!-- Main Feed -->
+            <div class="flex-1">
+                <h1 class="text-2xl font-bold text-slate-900 mb-6">Available Opportunities</h1>
+                
+                <!-- Job List Container -->
+                <div id="job-container" class="space-y-4">
+                    <!-- Jobs will be injected here by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="border-t border-slate-800 pt-8 text-center cursor-pointer select-none" onclick="handleCopyrightClick()">
+                <p class="text-sm">&copy; 2023 Remotify Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

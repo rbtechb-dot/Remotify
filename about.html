@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Remotify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <span class="text-xl font-bold text-slate-900 tracking-tight">Remotify</span>
+                    </a>
+                    <div class="hidden md:flex ml-10 space-x-8">
+                        <a href="index.html" class="text-slate-500 hover:text-blue-600 transition">Home</a>
+                        <a href="dashboard.html" class="text-slate-500 hover:text-blue-600 transition">Find Jobs</a>
+                        <a href="about.html" class="text-blue-600 font-medium">About Us</a>
+                        <a href="contact.html" class="text-slate-500 hover:text-blue-600 transition">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="login.html" class="text-slate-600 hover:text-blue-600 font-medium">Log In</a>
+                    <a href="register.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition shadow-sm">Sign Up</a>
+                </div>
+                 <div class="flex items-center md:hidden">
+                    <button onclick="toggleMenu()" class="text-slate-500 hover:text-slate-700 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+         <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600">Home</a>
+                <a href="dashboard.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600">Find Jobs</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50">About Us</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-slate-900 sm:text-4xl">
+                        Our Mission
+                    </h2>
+                    <p class="mt-4 text-lg text-slate-500">
+                        Remotify was built with a simple belief: talent is everywhere, but opportunity is not. We bridge that gap by connecting skilled professionals from around the world with trusted remote-first companies.
+                    </p>
+                    <p class="mt-4 text-lg text-slate-500">
+                        Unlike other boards, we verify every job and every applicant, creating a secure ecosystem where work happens smoothly.
+                    </p>
+                </div>
+                <div class="mt-10 lg:mt-0">
+                    <img class="rounded-xl shadow-lg" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80" alt="Team working">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="bg-blue-600 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 text-center">
+                <div class="bg-blue-700 rounded-lg p-5">
+                    <dt class="text-sm font-medium text-blue-200 truncate">Jobs Posted</dt>
+                    <dd class="mt-1 text-3xl font-semibold text-white">5,000+</dd>
+                </div>
+                <div class="bg-blue-700 rounded-lg p-5">
+                    <dt class="text-sm font-medium text-blue-200 truncate">Active Users</dt>
+                    <dd class="mt-1 text-3xl font-semibold text-white">12,000+</dd>
+                </div>
+                <div class="bg-blue-700 rounded-lg p-5">
+                    <dt class="text-sm font-medium text-blue-200 truncate">Countries</dt>
+                    <dd class="mt-1 text-3xl font-semibold text-white">85+</dd>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Remotify</h3>
+                    <p class="text-sm text-slate-400">Connecting talent with opportunity across the globe. Secure, verified, and reliable.</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="dashboard.html" class="hover:text-white transition">Find Jobs</a></li>
+                        <li><a href="login.html" class="hover:text-white transition">Login</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Support</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white"><i class="fa-brands fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                        <a href="contact.html" class="text-slate-400 hover:text-white"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-slate-800 pt-8 text-center cursor-pointer select-none" onclick="handleCopyrightClick()">
+                <p class="text-sm">&copy; 2023 Remotify Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

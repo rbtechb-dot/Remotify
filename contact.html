@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Remotify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <span class="text-xl font-bold text-slate-900 tracking-tight">Remotify</span>
+                    </a>
+                    <div class="hidden md:flex ml-10 space-x-8">
+                        <a href="index.html" class="text-slate-500 hover:text-blue-600 transition">Home</a>
+                        <a href="dashboard.html" class="text-slate-500 hover:text-blue-600 transition">Find Jobs</a>
+                        <a href="about.html" class="text-slate-500 hover:text-blue-600 transition">About Us</a>
+                        <a href="contact.html" class="text-blue-600 font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="login.html" class="text-slate-600 hover:text-blue-600 font-medium">Log In</a>
+                    <a href="register.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition shadow-sm">Sign Up</a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button onclick="toggleMenu()" class="text-slate-500 hover:text-slate-700 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+         <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600">Home</a>
+                <a href="dashboard.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600">Find Jobs</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-600">About Us</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-blue-50">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-extrabold text-slate-900">Get in touch</h1>
+            <p class="mt-4 text-lg text-slate-500">Have questions about payments or job listings? We're here to help.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700">Name</label>
+                        <input type="text" class="mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700">Email</label>
+                        <input type="email" class="mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700">Message</label>
+                        <textarea rows="4" class="mt-1 block w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <button type="button" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Info -->
+            <div class="space-y-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-start space-x-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-xl">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900">WhatsApp Support</h3>
+                        <p class="text-slate-500 mt-1">Chat directly with our support team for instant help with applications.</p>
+                        <a href="#" id="contact-phone-display" class="mt-3 inline-block text-green-600 font-medium hover:underline">+1 (555) 0123-4567</a>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-start space-x-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900">Office</h3>
+                        <p class="text-slate-500 mt-1">123 Remote Blvd, Cloud City<br>Internet, 127.0.0.1</p>
+                        <p class="text-slate-500 mt-2 text-sm" id="contact-email-display">support@remotify.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Remotify</h3>
+                    <p class="text-sm text-slate-400">Connecting talent with opportunity across the globe. Secure, verified, and reliable.</p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="dashboard.html" class="hover:text-white transition">Find Jobs</a></li>
+                        <li><a href="login.html" class="hover:text-white transition">Login</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Support</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms & Conditions</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white"><i class="fa-brands fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white"><i class="fa-brands fa-linkedin text-xl"></i></a>
+                        <a href="contact.html" class="text-slate-400 hover:text-white"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-slate-800 pt-8 text-center cursor-pointer select-none" onclick="handleCopyrightClick()">
+                <p class="text-sm">&copy; 2023 Remotify Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
